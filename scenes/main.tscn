@@ -1,0 +1,544 @@
+[gd_scene load_steps=10 format=3 uid="uid://dw252rmc4pksg"]
+
+[ext_resource type="Script" uid="uid://bipx1bta5v0ej" path="res://scripts/level_transfer.gd" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://ld64q04tnuo3" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://3kiivt7huy1h" path="res://scripts/rotate_room.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://lqj1dxunk086" path="res://scripts/door_control.gd" id="2_sugp2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qli"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_sugp2")
+
+[node name="LevelTransitionRoom" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 16, 0)
+script = ExtResource("1_0wfyh")
+
+[node name="Floor" type="CSGBox3D" parent="LevelTransitionRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="LevelTransitionRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="LevelTransitionRoom"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="LevelTransitionRoom" groups=["to_start"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_0wfyh")
+
+[node name="LeftWall" type="CSGBox3D" parent="LevelTransitionRoom"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="LevelTransitionRoom"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomT" type="Area3D" parent="LevelTransitionRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelTransitionRoom/InRoomT"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelTransitionRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="RoomCore" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
+script = ExtResource("2_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore"]
+light_energy = 5.0
+light_cull_mask = 4294966273
+omni_range = 60.0
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.5, 0)
+use_collision = true
+size = Vector3(32, 1, 32)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5, 0)
+use_collision = true
+size = Vector3(32, 1, 32)
+
+[node name="BackWallC" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 0)
+use_collision = true
+size = Vector3(1, 24, 4)
+
+[node name="BackWallL" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, -9)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="BackWallR" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 9)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="FrontWallC" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, 0)
+use_collision = true
+size = Vector3(1, 24, 4)
+
+[node name="FrontWallR" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, -9)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="FrontWallL" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 0, 9)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="RightWallC" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -16.5)
+use_collision = true
+size = Vector3(1, 24, 4)
+
+[node name="RightWallL" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 0, -16.5)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="RightWallR" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 0, -16.5)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="LeftWallC" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 16.5)
+use_collision = true
+size = Vector3(1, 24, 4)
+
+[node name="LeftWallR" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 0, 16.5)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="LeftWallL" type="CSGBox3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 0, 16.5)
+use_collision = true
+size = Vector3(1, 32, 14)
+
+[node name="Entrance" type="Node3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, -16.5, 0)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/Entrance"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/Entrance" groups=["begin"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_o5qli")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_jyhfs")
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/Entrance"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/Entrance"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomBegin" type="Area3D" parent="RoomCore/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/Entrance/InRoomBegin"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitBack" type="Node3D" parent="RoomCore"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 18.5, 16.5, 0)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitBack"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitBack" groups=["to_transition"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitBack"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitBack"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomB" type="Area3D" parent="RoomCore/ExitBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitBack/InRoomB"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitBack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitFront1" type="Node3D" parent="RoomCore"]
+transform = Transform3D(-1, 8.742278e-08, 0, 8.742278e-08, 1, 8.742278e-08, 7.642742e-15, 8.742278e-08, -1, -18.5, -16.5, 0)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitFront1"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitFront1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitFront1" groups=["to_transition"]]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitFront1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitFront1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitFront1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomF1" type="Area3D" parent="RoomCore/ExitFront1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitFront1/InRoomF1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitFront1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitFront2" type="Node3D" parent="RoomCore"]
+transform = Transform3D(-1, -7.642742e-15, 8.742278e-08, 0, -1, -8.742278e-08, 8.742278e-08, -8.742278e-08, 1, -18.5, 16.5, 0)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitFront2"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitFront2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitFront2" groups=["to_transition"]]
+transform = Transform3D(-1, -7.642742e-15, -8.742278e-08, -7.642742e-15, 1, 0, 8.742278e-08, 0, -1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitFront2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitFront2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitFront2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomF2" type="Area3D" parent="RoomCore/ExitFront2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitFront2/InRoomF2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitFront2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitRight1" type="Node3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -16.5, -18.5)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitRight1"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitRight1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitRight1" groups=["to_transition"]]
+transform = Transform3D(1, -8.742278e-08, 8.742278e-08, -8.742278e-08, -1, 0, 8.742278e-08, -7.642742e-15, -1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitRight1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitRight1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitRight1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomR1" type="Area3D" parent="RoomCore/ExitRight1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitRight1/InRoomR1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitRight1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitRight2" type="Node3D" parent="RoomCore"]
+transform = Transform3D(4.371139e-08, -3.821371e-15, -1, -8.742278e-08, -1, 0, -1, 8.742278e-08, -4.371139e-08, 0, 16.5, -18.5)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitRight2"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitRight2" groups=["to_transition"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitRight2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitRight2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomR2" type="Area3D" parent="RoomCore/ExitRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitRight2/InRoomR2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitRight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitLeft1" type="Node3D" parent="RoomCore"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -16.5, 18.5)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitLeft1"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitLeft1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitLeft1" groups=["to_transition"]]
+transform = Transform3D(1, -8.742278e-08, 8.742278e-08, -8.742278e-08, -1, 0, 8.742278e-08, -7.642742e-15, -1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitLeft1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitLeft1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitLeft1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomL1" type="Area3D" parent="RoomCore/ExitLeft1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitLeft1/InRoomL1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitLeft1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="ExitLeft2" type="Node3D" parent="RoomCore"]
+transform = Transform3D(4.371139e-08, -3.821371e-15, 1, -8.742278e-08, -1, 0, 1, -8.742278e-08, -4.371139e-08, 0, 16.5, 18.5)
+
+[node name="Floor" type="CSGBox3D" parent="RoomCore/ExitLeft2"]
+use_collision = true
+size = Vector3(5, 1, 4)
+
+[node name="Roof" type="CSGBox3D" parent="RoomCore/ExitLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5, 0)
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="BackWall" type="CSGBox3D" parent="RoomCore/ExitLeft2" groups=["to_transition"]]
+transform = Transform3D(1, -8.742278e-08, 8.742278e-08, -8.742278e-08, -1, 0, 8.742278e-08, -7.642742e-15, -1, 3, 2.5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_sugp2")
+
+[node name="Door" type="CSGBox3D" parent="RoomCore/ExitLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitLeft2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitLeft2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+
+[node name="InRoomL2" type="Area3D" parent="RoomCore/ExitLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCore/ExitLeft2/InRoomL2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/ExitLeft2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="Level3" type="Node3D" parent="RoomCore"]
+
+[node name="Wall1" type="CSGBox3D" parent="RoomCore/Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.5, -10)
+use_collision = true
+size = Vector3(32, 5, 1)
+
+[node name="Wall2" type="CSGBox3D" parent="RoomCore/Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 13.5, -5)
+use_collision = true
+size = Vector3(28, 5, 1)
+
+[node name="Wall3" type="CSGBox3D" parent="RoomCore/Level3"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 11.5, -7.5)
+use_collision = true
+size = Vector3(24, 4, 1)
+
+[node name="Wall4" type="CSGBox3D" parent="RoomCore/Level3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 3, -5)
+use_collision = true
+size = Vector3(5, 5, 1)
+
+[node name="Wall5" type="CSGBox3D" parent="RoomCore/Level3"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 13.5, 1, -7.5)
+use_collision = true
+size = Vector3(5, 4, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 0)

@@ -1,0 +1,7 @@
+Initial: x=19,y=1,z=0
+Front1: x=-20.5,y=1,z=-1.5 to 1.5
+Left1: x=-1.5 to 1.5,y=1,z=20.5
+Right1: x=-1.5 to 1.5,y=1,z=-20.5
+Transition Enter: x=34,y=17.5,z=-1.5 to 1.5
+Transition Exit: x=31,y=17.5,z=-1.5 to 1.5
+Spawn Door: x=17.5,y=1,z=-1.5 to 1.5
