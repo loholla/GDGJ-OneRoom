@@ -27,6 +27,7 @@ func _smooth_flip():
 func _reset_flip():
 	rotating = false
 	room_core.rotation.x = initial_rotation
+	GameManager.flipped = false
 
 func _physics_process(delta):
 	if not rotating:

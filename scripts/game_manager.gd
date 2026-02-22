@@ -44,9 +44,11 @@ func flip():
 		match(level):
 			3:
 				if not flipped:
-					reverse_flip = true
-				else:
 					reverse_flip = false
+				else:
+					reverse_flip = true
+			4:
+				reverse_flip = true
 			_:
 				reverse_flip = false
 		SignalBus.smooth_rotate.emit()
