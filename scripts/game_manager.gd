@@ -20,7 +20,7 @@ var l_at_begin : bool = false
 var flipped : bool = false
 var reverse_flip := false
 
-var level := 1
+var level := 7
 var ready_to_progress := false
 var in_level := true
 
@@ -49,6 +49,11 @@ func flip():
 					reverse_flip = true
 			4:
 				reverse_flip = true
+			6:
+				if not flipped:
+					reverse_flip = false
+				else:
+					reverse_flip = true
 			_:
 				reverse_flip = false
 		SignalBus.smooth_rotate.emit()

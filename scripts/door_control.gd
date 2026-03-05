@@ -28,6 +28,9 @@ var doorl2pos
 
 @onready var level_3: Node3D = $Level3
 @onready var level_4: Node3D = $Level4
+@onready var level_5: Node3D = $Level5
+@onready var level_6: Node3D = $Level6
+@onready var level_7: Node3D = $Level7
 
 func _ready():
 	doorepos = doore.position
@@ -46,10 +49,14 @@ func _ready():
 	oll1.visible = false
 	oll2.visible = false
 	level_3.position.z = 60
+	level_4.position.z = 60
+	level_5.position.z = 60
+	level_6.position.z = 60
+	level_7.position.z = 60
 	
 	SignalBus.close_doors.connect(transition)
 	SignalBus.next_level.connect(change_doors)
-	change_doors(1) # LEVEL HERE
+	change_doors(7) # LEVEL HERE
 
 func transition():
 	doore.position = doorepos
@@ -69,6 +76,9 @@ func transition():
 	oll2.visible = false
 	level_3.position.z = 60
 	level_4.position.z = 60
+	level_5.position.z = 60
+	level_6.position.z = 60
+	level_7.position.z = 60
 
 func change_doors(level_num : int):
 	match(level_num):
@@ -92,7 +102,16 @@ func change_doors(level_num : int):
 			oll1.visible = true
 		5:
 			doore.position.y += -10
+			doorb.position.y += 10
+			olb.visible = true
+			level_5.position.z = 0
 		6:
 			doore.position.y += -10
+			doorl2.position.y += 10
+			oll2.visible = true
+			level_6.position.z = 0
 		7:
 			doore.position.y += -10
+			doorr1.position.y -= 10
+			olr1.visible = true
+			level_7.position.z = 0
