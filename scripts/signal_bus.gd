@@ -9,3 +9,4 @@ signal set_position
 signal close_doors
 signal look_at_beginning
 signal next_level
+signal flip_icon

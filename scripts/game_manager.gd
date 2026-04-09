@@ -20,7 +20,7 @@ var l_at_begin : bool = false
 var flipped : bool = false
 var reverse_flip := false
 
-var level := 7
+var level := 1
 var ready_to_progress := false
 var in_level := true
 

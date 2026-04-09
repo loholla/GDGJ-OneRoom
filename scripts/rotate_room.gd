@@ -16,6 +16,7 @@ func _ready():
 
 func _smooth_flip():
 	if not rotating and GameManager.level != 1 and GameManager.in_level:
+		SignalBus.flip_icon.emit()
 		print("Rotating")
 		rotating = true
 		elapsed_time = 0.0

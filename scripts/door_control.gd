@@ -56,7 +56,7 @@ func _ready():
 	
 	SignalBus.close_doors.connect(transition)
 	SignalBus.next_level.connect(change_doors)
-	change_doors(7) # LEVEL HERE
+	change_doors(1) # LEVEL HERE
 
 func transition():
 	doore.position = doorepos
