@@ -74,4 +74,7 @@ func _physics_process(_delta):
 		in_level = true
 		ready_to_progress = false
 		level += 1
+		if level >= 8:
+			SignalBus.fin_text.emit()
+			return
 		SignalBus.next_level.emit(level)

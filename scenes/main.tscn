@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dw252rmc4pksg"]
+[gd_scene load_steps=34 format=3 uid="uid://dw252rmc4pksg"]
 
 [ext_resource type="Script" uid="uid://bipx1bta5v0ej" path="res://scripts/level_transfer.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://ld64q04tnuo3" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://3kiivt7huy1h" path="res://scripts/rotate_room.gd" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://lqj1dxunk086" path="res://scripts/door_control.gd" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://dhap3k2e5mg23" path="res://scripts/fin_screen.gd" id="3_y6deb"]
 [ext_resource type="Material" uid="uid://bg778uinpo56p" path="res://textures/Lvl3Transparency.tres" id="4_a8y0u"]
 [ext_resource type="Material" uid="uid://db8kopa46f1id" path="res://textures/LVL7-Walls.tres" id="4_o6xl0"]
 [ext_resource type="Material" uid="uid://75xss4gacbvi" path="res://textures/LVL7-Roof.tres" id="4_tbgi4"]
@@ -14,6 +15,15 @@
 [ext_resource type="Material" uid="uid://w1fwkrvypt63" path="res://textures/LVL7-Floor.tres" id="6_tipki"]
 [ext_resource type="Material" uid="uid://qmufn2k6wugt" path="res://textures/Lvl5Transparency.tres" id="7_muem4"]
 [ext_resource type="Material" uid="uid://cmuw6dp2j7vxb" path="res://textures/Lvl5Color.tres" id="8_dp3eg"]
+[ext_resource type="Material" uid="uid://v3gd1d1reftx" path="res://textures/Lvl7-Purple.tres" id="12_pm3ni"]
+[ext_resource type="Material" uid="uid://mhu5pw71hosh" path="res://textures/LVL7-Yellow.tres" id="14_jkv2x"]
+[ext_resource type="Material" uid="uid://bt0olghwujls8" path="res://textures/LVL7-Green.tres" id="15_jbj1t"]
+[ext_resource type="Material" uid="uid://do0kp8rywc5h0" path="res://textures/BackroomsWalls.tres" id="15_yc10j"]
+[ext_resource type="Material" uid="uid://cxi43v4nlyhnv" path="res://textures/BackroomsRoof.tres" id="16_jscy8"]
+[ext_resource type="Material" uid="uid://p45l0he482dm" path="res://textures/BackroomsLights.tres" id="17_pm3ni"]
+[ext_resource type="Material" uid="uid://biawdjwivvq8f" path="res://textures/Backrooms-Floor.tres" id="18_y6deb"]
+[ext_resource type="Material" uid="uid://dmqtx14dbv3fs" path="res://textures/Lvl7-Blue.tres" id="19_og1vs"]
+[ext_resource type="Material" uid="uid://t2ub0d5okgcs" path="res://textures/Invisibile.tres" id="22_y6deb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_color = Color(0, 1, 0, 1)
@@ -39,6 +49,9 @@ albedo_color = Color(0.5882353, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc10j"]
 albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wyq8"]
+albedo_color = Color(0.2331478, 0.45712483, 1, 1)
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_sugp2")
@@ -103,7 +116,7 @@ light_cull_mask = 4294966273
 omni_range = 60.0
 
 [node name="Floor" type="CSGBox3D" parent="RoomCore"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04473114, -16.499998, -0.060025215)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.5, 0)
 use_collision = true
 size = Vector3(32, 1, 32)
 
@@ -218,6 +231,11 @@ shape = SubResource("BoxShape3D_sugp2")
 [node name="OmniLight3D" type="OmniLight3D" parent="RoomCore/Entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
+[node name="Label3D" type="Label3D" parent="RoomCore/Entrance"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.4952984, 2.284067, 0)
+text = "You have beaten the game!"
+script = ExtResource("3_y6deb")
+
 [node name="ExitBack" type="Node3D" parent="RoomCore"]
 transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 18.5, 16.5, 0)
 
@@ -249,7 +267,7 @@ use_collision = true
 size = Vector3(1, 4, 4)
 
 [node name="RightWall" type="CSGBox3D" parent="RoomCore/ExitBack"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, -2.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4982605, 2.4955635, -2.4997997)
 use_collision = true
 size = Vector3(1, 4, 4)
 
@@ -514,7 +532,7 @@ use_collision = true
 size = Vector3(1, 4, 4)
 
 [node name="LeftWall" type="CSGBox3D" parent="RoomCore/ExitLeft2"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.5, 2.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.49957466, 2.498438, 2.50029)
 use_collision = true
 size = Vector3(1, 4, 4)
 
@@ -594,6 +612,7 @@ material = ExtResource("5_jkv2x")
 
 [node name="Wall14" type="CSGBox3D" parent="RoomCore/Level4"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3, -10.5)
+visible = false
 use_collision = true
 size = Vector3(32, 1, 5)
 material = SubResource("StandardMaterial3D_gqmmt")
@@ -630,6 +649,7 @@ material = SubResource("StandardMaterial3D_gqmmt")
 
 [node name="Wall11" type="CSGBox3D" parent="RoomCore/Level4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+visible = false
 use_collision = true
 size = Vector3(4, 1, 10)
 material = SubResource("StandardMaterial3D_gqmmt")
@@ -665,7 +685,6 @@ text = "2
 "
 
 [node name="Level5" type="Node3D" parent="RoomCore"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
 
 [node name="Wall1" type="CSGBox3D" parent="RoomCore/Level5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -10, -13.5)
@@ -732,6 +751,11 @@ transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 
 use_collision = true
 size = Vector3(15, 1, 8.5)
 material = SubResource("StandardMaterial3D_yc10j")
+
+[node name="Label3D" type="Label3D" parent="RoomCore/Level5/Wall8"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 6.305249, 0.5003586, 1.0858269)
+text = "Hug this wall when hitting
+rotate to stick to it slightly"
 
 [node name="Wall3" type="CSGBox3D" parent="RoomCore/Level5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -13.5)
@@ -815,6 +839,7 @@ material = ExtResource("4_o6xl0")
 
 [node name="Wall11" type="CSGBox3D" parent="RoomCore/Level6"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 2.5)
+visible = false
 use_collision = true
 size = Vector3(32, 9, 1)
 material = ExtResource("4_tbgi4")
@@ -1006,10 +1031,98 @@ size = Vector3(1.5, 1, 23)
 material = ExtResource("4_o6xl0")
 
 [node name="Wall42" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.1, -6.08008, -15.04815)
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.1, -6.1300373, -15.04815)
 use_collision = true
-size = Vector3(3.2583008, 1, 9.839844)
+size = Vector3(3.2583008, 1, 11.761169)
 material = ExtResource("4_o6xl0")
+
+[node name="Wall252" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.1, 2.8912392, -13.126641)
+use_collision = true
+size = Vector3(7.1013184, 1, 4.726425)
+material = ExtResource("12_pm3ni")
+
+[node name="Label3D" type="Label3D" parent="RoomCore/Level7/Walls/Wall252"]
+transform = Transform3D(-1, -8.742278e-08, -3.5527137e-15, 0, -4.3711392e-08, 1, -8.742278e-08, 1, 4.371139e-08, 1.71138, 0.5024271, -0.26675797)
+text = "Hug this wall when rotating"
+
+[node name="Wall263" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -5.33976, 3.4342823, -11.771722)
+use_collision = true
+size = Vector3(4.3914795, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall275" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.227535, 3.4342823, -8.530425)
+use_collision = true
+size = Vector3(4.3914795, 2.6748047, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall277" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.969695, 3.4342823, -0.13154888)
+use_collision = true
+size = Vector3(13.101501, 1.2120361, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall281" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -5.8314743, 3.4342823, 3.320499)
+use_collision = true
+size = Vector3(14.117645, 1.2120361, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall273" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.5248318, 3.4342823, -8.168114)
+use_collision = true
+size = Vector3(3.6351929, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall282" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -1.6748409, 3.4342823, -3.9514027)
+use_collision = true
+size = Vector3(5.155327, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall264" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 3.030778, 3.4342823, -10.144189)
+use_collision = true
+size = Vector3(7.6587524, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall267" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.137351, 3.4342823, -5.4191446)
+use_collision = true
+size = Vector3(7.978409, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall284" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.137351, 3.4342823, 5.9857264)
+use_collision = true
+size = Vector3(9.793404, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall288" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 3.9898636, 3.4342823, 9.63666)
+use_collision = true
+size = Vector3(2.2335072, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall289" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.23016623, 3.4342823, 9.042225)
+use_collision = true
+size = Vector3(9.475979, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall268" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 10.300961, 3.4342823, -4.36308)
+use_collision = true
+size = Vector3(5.8662796, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall270" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 7.417305, 3.4342823, -4.36308)
+use_collision = true
+size = Vector3(5.8662796, 1, 3.5741234)
+material = ExtResource("12_pm3ni")
 
 [node name="Wall31" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5.375, 0.5, 6)
@@ -1018,10 +1131,184 @@ size = Vector3(3.75, 1, 23)
 material = ExtResource("4_o6xl0")
 
 [node name="Wall41" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 14.313, 0.19338799, -12.907)
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 14.313, -6.121704, -12.907)
 use_collision = true
-size = Vector3(3.367, 1, 22.38678)
+size = Vector3(3.367, 1, 11.746601)
 material = ExtResource("4_o6xl0")
+
+[node name="Wall91" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 14.377561, 2.9112053, -9.163628)
+use_collision = true
+size = Vector3(3.4961221, 1, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Label3D" type="Label3D" parent="RoomCore/Level7/Walls/Wall91"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.47212696, 0.5038891, -0.43213272)
+text = "You went up/down the
+wrong tunnel to this layer.
+The exit is behind this wall"
+
+[node name="Wall269" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 10.295446, 3.4155712, 1.557204)
+use_collision = true
+size = Vector3(6.679542, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall285" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 8.587963, 3.4155712, 6.409832)
+use_collision = true
+size = Vector3(3.2645757, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall290" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -1.0141144, 3.4155712, 6.1094427)
+use_collision = true
+size = Vector3(4.7231264, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall291" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -4.6372375, 3.4155712, 9.819638)
+use_collision = true
+size = Vector3(3.145865, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall286" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.165989, 3.4155712, 10.448599)
+use_collision = true
+size = Vector3(3.2645757, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall287" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 8.154121, 3.4155712, 13.393937)
+use_collision = true
+size = Vector3(9.288312, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall283" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 1.2891605, 3.4155712, 1.557204)
+use_collision = true
+size = Vector3(6.8780155, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall278" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -11.785158, 3.4155712, 3.4001856)
+use_collision = true
+size = Vector3(4.3905525, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall280" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -8.848372, 3.4155712, 12.951138)
+use_collision = true
+size = Vector3(10.264124, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall279" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -11.785158, 3.4155712, -0.07079363)
+use_collision = true
+size = Vector3(4.3905525, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall271" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 4.523596, 3.4155712, -1.9150755)
+use_collision = true
+size = Vector3(6.7318974, 1, 3.549746)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall92" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.624256, 2.9112053, -13.473804)
+use_collision = true
+size = Vector3(1.9919717, 1, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall261" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 0.57338667, 3.3672924, -13.473804)
+use_collision = true
+size = Vector3(5.9051657, 1, 3.6463037)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall272" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -2.9266686, 3.3672924, -9.498299)
+use_collision = true
+size = Vector3(5.9051657, 1, 3.6463037)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall265" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 6.7030587, 3.3672924, -6.812921)
+use_collision = true
+size = Vector3(8.184801, 1, 3.6463037)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall274" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -4.161575, 3.3672924, -6.812921)
+use_collision = true
+size = Vector3(8.184801, 1, 3.6463037)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall262" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -7.7177916, 3.3672924, -13.473804)
+use_collision = true
+size = Vector3(5.419868, 1, 3.6463037)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall276" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -10.630892, 3.3672924, -10.236028)
+use_collision = true
+size = Vector3(5.419868, 1, 3.6463037)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall253" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 8.224812, 2.9112053, -13.950489)
+use_collision = true
+size = Vector3(5.0711813, 0.10864258, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall254" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 8.224812, 2.9112053, -9.545586)
+use_collision = true
+size = Vector3(5.0711813, 0.10864258, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall255" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 5.705063, 2.9112053, -11.735954)
+use_collision = true
+size = Vector3(0.0316844, 4.48938, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall266" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 10.743664, 2.9112053, -11.735954)
+use_collision = true
+size = Vector3(0.0316844, 4.48938, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall256" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -12.46866, 2.9112053, -14.578757)
+use_collision = true
+size = Vector3(0.0316844, 2.9717407, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall257" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.262809, 2.9112053, -13.14881)
+use_collision = true
+size = Vector3(3.6199818, 0.111846924, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall258" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -12.46866, 2.9112053, -4.993198)
+use_collision = true
+size = Vector3(0.0316844, 3.9811554, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall259" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.262809, 2.9112053, -6.9326973)
+use_collision = true
+size = Vector3(3.6199818, 0.1330719, 4.5584764)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall260" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.262809, 2.9112053, -3.0655031)
+use_collision = true
+size = Vector3(3.6199818, 0.1330719, 4.5584764)
+material = ExtResource("12_pm3ni")
 
 [node name="Wall30" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5.375, 0.5, 8.5)
@@ -1030,21 +1317,27 @@ size = Vector3(3.75, 1, 23)
 material = ExtResource("4_o6xl0")
 
 [node name="Wall93" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 14.323522, 0.5, 13.379536)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 14.323522, 2.9336243, 13.379536)
 use_collision = true
-size = Vector3(3.75, 1, 23)
+size = Vector3(3.75, 1, 18.132751)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall94" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 13.08817, 2.9336243, 14.436909)
+use_collision = true
+size = Vector3(1.2792969, 3.114746, 18.132751)
 material = ExtResource("4_o6xl0")
 
 [node name="Wall24" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -13, 0.5, 14.75)
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -13, 1.0134277, 14.75)
 use_collision = true
-size = Vector3(2.5, 1, 23)
+size = Vector3(2.5, 1, 24.026855)
 material = ExtResource("4_o6xl0")
 
 [node name="Wall22" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14.25, 0.5, 13)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14.25, 0.9992676, 13)
 use_collision = true
-size = Vector3(3.5, 1, 23)
+size = Vector3(3.5, 1, 23.998535)
 material = ExtResource("4_o6xl0")
 
 [node name="Wall27" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
@@ -1371,11 +1664,938 @@ use_collision = true
 size = Vector3(3.1521401, 1, 3.05)
 material = ExtResource("5_85g3d")
 
-[node name="Wall91" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -10.104063, 1.3203783, -15.180822)
+[node name="Wall95" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.197221, -8.070659, 11.721609)
 use_collision = true
-size = Vector3(3.1521401, 1, 3.05)
+size = Vector3(4.391009, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall108" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 0.5928907, -8.070659, 9.64449)
+use_collision = true
+size = Vector3(8.545244, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall114" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -2.8723032, -8.070659, 6.592486)
+use_collision = true
+size = Vector3(14.627767, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall121" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -6.111461, -8.070659, 1.7192104)
+use_collision = true
+size = Vector3(4.881215, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall123" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -13.321189, -8.070659, 1.626437)
+use_collision = true
+size = Vector3(4.695668, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall127" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.915715, -8.070659, -11.712244)
+use_collision = true
+size = Vector3(9.057306, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall129" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.882495, -8.070659, -12.729947)
+use_collision = true
+size = Vector3(2.621177, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall133" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.170053, -8.070659, -12.729947)
+use_collision = true
+size = Vector3(2.621177, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall130" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -7.102332, -8.070659, -14.776363)
+use_collision = true
+size = Vector3(2.621177, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall134" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.872838, -8.070659, -14.776363)
+use_collision = true
+size = Vector3(2.621177, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall132" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.92418385, -8.070659, -5.8380604)
+use_collision = true
+size = Vector3(3.2518725, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall122" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.617657, -8.070659, 4.6272764)
+use_collision = true
+size = Vector3(4.571645, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall124" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.617657, -8.070659, -2.2955263)
+use_collision = true
+size = Vector3(4.476374, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall115" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -6.2575097, -8.070659, 13.23069)
+use_collision = true
+size = Vector3(5.999959, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall116" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.946482, -8.070659, 10.312259)
+use_collision = true
+size = Vector3(6.089701, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall139" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.946482, 0.99075127, 8.294655)
+use_collision = true
+size = Vector3(2.0544941, 1, 12.34585)
 material = ExtResource("4_o6xl0")
+
+[node name="Wall142" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.890699, 1.0072308, 8.294655)
+use_collision = true
+size = Vector3(2.0544941, 1, 12.378809)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall96" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.197221, -8.070659, 3.2970095)
+use_collision = true
+size = Vector3(8.208688, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall112" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 9.387488, -8.070659, -7.091072)
+use_collision = true
+size = Vector3(14.497301, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall105" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 9.977261, -8.070659, 6.4326)
+use_collision = true
+size = Vector3(5.4827447, 1.949707, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall109" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 11.289842, -8.070659, 2.9016278)
+use_collision = true
+size = Vector3(2.8575833, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall110" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.7975156, -8.070659, 2.9016278)
+use_collision = true
+size = Vector3(7.468821, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall117" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -9.680501, -8.070659, 6.861698)
+use_collision = true
+size = Vector3(12.7147255, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall143" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -8.462331, 9.06848, 6.861698)
+use_collision = true
+size = Vector3(10.033049, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall192" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -8.462331, 9.068479, -0.3417743)
+use_collision = true
+size = Vector3(10.033049, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall191" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -6.8197913, 9.06848, 2.966511)
+use_collision = true
+size = Vector3(6.7479696, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall186" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -6.936002, 9.06848, 13.297058)
+use_collision = true
+size = Vector3(6.963127, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall190" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 3.0388508, 9.06848, 13.297059)
+use_collision = true
+size = Vector3(6.963127, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall188" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -5.268921, 9.06848, 9.8104515)
+use_collision = true
+size = Vector3(3.6289654, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall156" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -12.371698, 9.068478, -3.542847)
+use_collision = true
+size = Vector3(7.4312277, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall194" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.276869, -2.2353783, -3.542846)
+use_collision = true
+size = Vector3(3.6208873, 1, 3.8414063)
+material = SubResource("StandardMaterial3D_2wyq8")
+
+[node name="Wall193" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.761976, 2.924965, -3.5428467)
+use_collision = true
+size = Vector3(2.6506724, 1, 6.5446043)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall197" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -12.975222, 2.924965, -5.0122075)
+use_collision = true
+size = Vector3(1.0313909, 3.9387207, 6.5446043)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall198" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.761976, 2.924964, -13.645335)
+use_collision = true
+size = Vector3(2.6506724, 1, 6.5446043)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall199" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -12.975222, 2.924964, -14.624962)
+use_collision = true
+size = Vector3(1.0313909, 2.8677979, 6.5446043)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall196" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.761976, 2.924964, -6.423222)
+use_collision = true
+size = Vector3(2.6506724, 1, 6.5446043)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall178" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -0.91758776, 9.068478, -3.542847)
+use_collision = true
+size = Vector3(10.965126, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall157" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -8.436465, 9.068476, -13.660768)
+use_collision = true
+size = Vector3(15.301693, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall162" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 2.0889997, 9.068476, -6.4957237)
+use_collision = true
+size = Vector3(23.520657, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall177" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.370781, 9.068477, -1.4646517)
+use_collision = true
+size = Vector3(9.216712, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall180" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 10.336378, 9.068477, 2.1849995)
+use_collision = true
+size = Vector3(7.147907, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall181" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 10.50104, 9.068478, 5.9774513)
+use_collision = true
+size = Vector3(6.8185825, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall183" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.7547865, 9.068478, 10.101301)
+use_collision = true
+size = Vector3(4.311091, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall185" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.0146885, 9.068478, 13.327957)
+use_collision = true
+size = Vector3(2.9418004, 0.92907715, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall167" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 14.896494, 9.068476, -6.4957237)
+size = Vector3(2.1367931, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall168" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.871855, 9.068476, -6.0109973)
+size = Vector3(8.186072, 0.041015625, 3.8414063)
+material = ExtResource("15_yc10j")
+
+[node name="Wall171" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.871855, 9.068477, -1.9687208)
+size = Vector3(8.186072, 0.041015625, 3.8414063)
+material = ExtResource("15_yc10j")
+
+[node name="Wall172" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.905111, 11.019592, -3.974565)
+size = Vector3(8.186072, 4.057251, 0.046191454)
+material = ExtResource("16_jscy8")
+
+[node name="Wall174" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 14.267581, 10.943621, -3.990922)
+size = Vector3(1.5182588, 2.9283142, 0.046191454)
+material = ExtResource("17_pm3ni")
+
+[node name="Wall175" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 9.385262, 10.943621, -3.990922)
+size = Vector3(1.5182588, 2.9283142, 0.046191454)
+material = ExtResource("17_pm3ni")
+
+[node name="Wall173" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 11.871855, 7.167902, -3.976838)
+size = Vector3(8.186072, 4.057251, 0.046191454)
+material = ExtResource("18_y6deb")
+
+[node name="Wall169" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 7.8041525, 9.068476, -3.992473)
+size = Vector3(0.050668478, 4.078064, 3.8414063)
+material = ExtResource("15_yc10j")
+
+[node name="Wall170" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 15.9545965, 9.068476, -3.992473)
+size = Vector3(0.050668478, 4.078064, 3.8414063)
+material = ExtResource("15_yc10j")
+
+[node name="Wall160" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -3.734231, 9.068476, -9.967847)
+use_collision = true
+size = Vector3(5.899008, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall164" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 9.702782, 9.068476, -9.967844)
+use_collision = true
+size = Vector3(7.9642744, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall166" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 8.11486, 9.068476, -13.472957)
+use_collision = true
+size = Vector3(4.720754, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall152" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.968179, 9.06848, 10.895866)
+use_collision = true
+size = Vector3(3.2138598, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall154" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.968179, 9.06848, 3.2220137)
+use_collision = true
+size = Vector3(8.109005, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall155" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.968179, 9.06848, -7.0873556)
+use_collision = true
+size = Vector3(8.109005, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall195" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.968179, -2.2571983, -9.540615)
+use_collision = true
+size = Vector3(13.0155325, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall207" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -10.176082, -2.2571983, -8.537185)
+use_collision = true
+size = Vector3(10.889673, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall215" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -13.517919, -2.2571983, 4.937167)
+use_collision = true
+size = Vector3(10.924273, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall211" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.0005330293, -2.2571983, -6.829747)
+use_collision = true
+size = Vector3(7.4747987, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall218" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.0005328609, -2.2571983, 7.159457)
+use_collision = true
+size = Vector3(13.722485, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall238" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.202667, -2.2571983, 10.843927)
+use_collision = true
+size = Vector3(4.5109434, 1.7211914, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall235" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.56882, -2.2571983, 1.1608453)
+use_collision = true
+size = Vector3(8.844577, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall220" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -5.9243393, -2.2571983, 6.833209)
+use_collision = true
+size = Vector3(6.9888363, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall212" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -3.6792989, -2.2571983, -3.614239)
+use_collision = true
+size = Vector3(6.7554793, 1, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall158" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.401369, 9.06848, -10.035394)
+use_collision = true
+size = Vector3(8.109005, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall161" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -1.2785125, 9.06848, -8.211551)
+use_collision = true
+size = Vector3(4.290496, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall179" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 4.0344987, 9.0684805, 0.77171344)
+use_collision = true
+size = Vector3(9.505112, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall182" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.412166, 9.068481, 8.050198)
+use_collision = true
+size = Vector3(5.1163254, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall184" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 6.7719164, 9.068481, 11.399028)
+use_collision = true
+size = Vector3(4.791396, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall163" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 13.180401, 9.06848, -13.035814)
+use_collision = true
+size = Vector3(7.0236006, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall165" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 6.2252226, 9.06848, -11.76292)
+use_collision = true
+size = Vector3(4.477824, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall200" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 6.225, 2.925, -11.763)
+use_collision = true
+size = Vector3(4.478, 1, 6.545)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall202" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 8.274994, 2.9250002, -13.500629)
+use_collision = true
+size = Vector3(1.0027398, 3.1102295, 6.545)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall204" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 0.990983, -2.2315273, -13.500629)
+use_collision = true
+size = Vector3(1.0027398, 23.342436, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall208" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -6.938132, -2.2315273, -10.081734)
+use_collision = true
+size = Vector3(1.0027398, 7.484206, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall210" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -5.3588285, -2.2315273, -6.507805)
+use_collision = true
+size = Vector3(1.0027398, 4.325599, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall227" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 6.832798, -2.2315273, -3.5949018)
+use_collision = true
+size = Vector3(1.0027398, 14.478983, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall236" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 4.8860893, -2.2315273, 0.8010383)
+use_collision = true
+size = Vector3(1.0027398, 10.585566, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall237" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 6.3826714, -2.2315273, 5.077811)
+use_collision = true
+size = Vector3(1.0027398, 13.57873, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall229" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 5.367119, -2.2315273, 5.4971247)
+use_collision = true
+size = Vector3(0.09023708, 3.8103929, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall230" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 5.3695602, -2.2315273, 9.011687)
+use_collision = true
+size = Vector3(0.09023708, 3.80551, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall232" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 7.2515593, -2.2315273, 7.258512)
+use_collision = true
+size = Vector3(0.09023708, 3.6061208, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall233" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5039878, -2.2315273, 7.258512)
+use_collision = true
+size = Vector3(0.09023708, 3.6061208, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall242" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 5.3695602, 3.34297, 9.011687)
+use_collision = true
+size = Vector3(0.09023708, 3.80551, 3.8282056)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall245" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 5.3695602, 3.34297, 5.484339)
+use_collision = true
+size = Vector3(0.09023708, 3.80551, 3.8282056)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall243" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 7.2515593, 3.34297, 7.258512)
+use_collision = true
+size = Vector3(0.09023708, 3.6061208, 3.8282056)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall244" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 3.5039878, 3.34297, 7.258512)
+use_collision = true
+size = Vector3(0.09023708, 3.6061208, 3.8282056)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall231" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 14.273724, -2.2315273, 12.891963)
+use_collision = true
+size = Vector3(0.09023708, 3.8479905, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall234" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 12.39604, -2.2315273, 14.480279)
+use_collision = true
+size = Vector3(0.09023708, 3.255217, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall240" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 14.273724, 3.3654346, 12.891963)
+use_collision = true
+size = Vector3(0.09023708, 3.8479905, 3.8282056)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall241" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 12.39604, 3.3654346, 14.480279)
+use_collision = true
+size = Vector3(0.09023708, 3.255217, 3.8282056)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall228" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 9.222731, -2.2315273, -6.83484)
+use_collision = true
+size = Vector3(1.0027398, 13.894277, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall214" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -8.508493, -2.2315273, -3.4032512)
+use_collision = true
+size = Vector3(0.60891384, 4.325599, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall213" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -8.589424, -2.2315273, -0.0015991696)
+use_collision = true
+size = Vector3(1.0027398, 10.834742, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall219" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -5.647459, -2.2315273, 3.3364446)
+use_collision = true
+size = Vector3(1.0027398, 10.834742, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall221" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.242108, -2.2315273, 6.5912857)
+use_collision = true
+size = Vector3(1.0027398, 3.6456635, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall222" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -1.8121293, -2.2315273, 9.925386)
+use_collision = true
+size = Vector3(1.0027398, 3.6456635, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall223" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.20846558, -2.2315273, 13.5191145)
+use_collision = true
+size = Vector3(1.0027398, 19.273167, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall239" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 12.071125, -2.2315273, 8.780677)
+use_collision = true
+size = Vector3(0.44495985, 3.887682, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall209" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 6.0516453, -2.2315273, -10.081734)
+use_collision = true
+size = Vector3(1.0027398, 13.0771675, 3.8282056)
+material = ExtResource("19_og1vs")
+
+[node name="Wall203" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 8.274994, 2.9250002, -10.021478)
+use_collision = true
+size = Vector3(1.0027398, 3.1102295, 6.545)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall201" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 10.245147, 2.9250002, -11.763)
+use_collision = true
+size = Vector3(4.478, 1, 6.545)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall176" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 7.264049, 9.06848, -4.20382)
+use_collision = true
+size = Vector3(4.477824, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall159" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 2.4384255, 9.06848, -13.053803)
+use_collision = true
+size = Vector3(7.1790695, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall153" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -9.920346, 9.06848, 11.542724)
+use_collision = true
+size = Vector3(4.5075665, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall187" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -3.9421692, 9.06848, 11.565614)
+use_collision = true
+size = Vector3(4.461791, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall189" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -0.28629658, 9.06848, 6.5079823)
+use_collision = true
+size = Vector3(14.577057, 1, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall140" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.414122, 1.00704, 6.8741045)
+use_collision = true
+size = Vector3(3.9591832, 1, 12.319433)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall141" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.410559, 1.0133629, 9.82375)
+use_collision = true
+size = Vector3(3.9520578, 1, 12.33208)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall118" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.579963, -8.070659, 9.681163)
+use_collision = true
+size = Vector3(4.1886616, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall111" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 4.913188, -8.070659, -0.3135631)
+use_collision = true
+size = Vector3(9.866343, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall120" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -9.719526, -8.070659, -0.3135631)
+use_collision = true
+size = Vector3(8.205632, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall126" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -9.6025095, -8.070659, -7.680954)
+use_collision = true
+size = Vector3(5.9422016, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall131" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.0486307, -8.070659, -7.680954)
+use_collision = true
+size = Vector3(5.9422016, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall136" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.8870983, -8.070659, -7.680954)
+use_collision = true
+size = Vector3(5.7167063, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall128" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -2.926117, -8.070659, -10.92067)
+use_collision = true
+size = Vector3(19.2569, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall113" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 12.582662, -8.070659, -4.031207)
+use_collision = true
+size = Vector3(7.328257, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall135" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 14.076347, -8.070659, -7.554421)
+use_collision = true
+size = Vector3(4.340886, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall137" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 11.948376, -8.070659, -10.27341)
+use_collision = true
+size = Vector3(4.340886, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall138" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5.4514904, -8.070659, -13.842305)
+use_collision = true
+size = Vector3(7.6047525, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall119" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.13072908, -8.070659, -4.031207)
+use_collision = true
+size = Vector3(12.9413, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall125" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14.210698, -8.070659, -4.031207)
+use_collision = true
+size = Vector3(3.5976033, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall106" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.4037733, -8.070659, 13.425249)
+use_collision = true
+size = Vector3(12.629719, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall107" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 11.378648, -8.070659, 10.024827)
+use_collision = true
+size = Vector3(2.679971, 1, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall97" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 7.2392845, -8.070659, 7.251478)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall98" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 3.5056233, -8.070659, 7.251478)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall103" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.492175, -8.070659, 14.251001)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall104" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14.261333, -8.070659, 12.488142)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall144" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -12.492175, 9.116215, 14.251001)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall145" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -14.261333, 9.116215, 12.488142)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall99" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5.3682184, -8.070659, 9.7324095)
+use_collision = true
+size = Vector3(3.7761884, 1.4915161, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall100" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 5.3702607, -8.070659, 5.489152)
+use_collision = true
+size = Vector3(3.7721035, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall146" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 7.2392845, 9.132278, 7.251477)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall147" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 3.5056233, 9.132278, 7.251477)
+use_collision = true
+size = Vector3(3.571795, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall148" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 5.3682184, 9.13228, 9.009679)
+use_collision = true
+size = Vector3(3.7761884, 0.046051025, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall149" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 5.3702607, 9.132278, 5.4891505)
+use_collision = true
+size = Vector3(3.7721035, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall150" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, 12.4304495, 9.132278, 14.447006)
+use_collision = true
+size = Vector3(3.1779873, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall151" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 14.295087, 9.132278, 12.881582)
+use_collision = true
+size = Vector3(3.7721035, 0.05029297, 3.8414063)
+material = ExtResource("15_jbj1t")
+
+[node name="Wall101" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 14.453206, -8.070659, -12.416305)
+use_collision = true
+size = Vector3(3.7381024, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall102" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 12.596482, -8.070659, -14.278434)
+use_collision = true
+size = Vector3(3.7721035, 0.05029297, 3.8414063)
+material = ExtResource("14_jkv2x")
+
+[node name="Wall205" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 14.318546, -2.1923037, -12.416305)
+use_collision = true
+size = Vector3(3.4687827, 0.05029297, 3.9143555)
+material = ExtResource("19_og1vs")
+
+[node name="Wall216" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.2457075, -2.228778, 10.356351)
+use_collision = true
+size = Vector3(3.7381024, 0.09802246, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall226" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14.241007, -2.228778, 12.492499)
+use_collision = true
+size = Vector3(3.5814536, 0.09802246, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall224" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -9.4209795, -2.228778, 8.37773)
+use_collision = true
+size = Vector3(4.041048, 0.09802246, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall225" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -12.498212, -2.228777, 14.243912)
+use_collision = true
+size = Vector3(3.581429, 0.09802246, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall246" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -14.241007, 3.3623123, 12.492499)
+use_collision = true
+size = Vector3(3.5814536, 0.09802246, 3.8414063)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall247" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -12.498212, 3.3623142, 14.243912)
+use_collision = true
+size = Vector3(3.581429, 0.09802246, 3.8414063)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall217" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.2457075, -2.228778, 6.386566)
+use_collision = true
+size = Vector3(3.7381024, 0.09802246, 3.8414063)
+material = ExtResource("19_og1vs")
+
+[node name="Wall248" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.427172, 3.309616, 10.356351)
+use_collision = true
+size = Vector3(4.1010294, 0.09802246, 3.8414063)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall249" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -9.4209795, 3.309616, 8.37773)
+use_collision = true
+size = Vector3(4.041048, 0.09802246, 3.8414063)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall251" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -13.440943, 3.309616, 8.37773)
+use_collision = true
+size = Vector3(4.041048, 0.09802246, 3.8414063)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall250" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -11.42705, 3.309616, 6.386566)
+use_collision = true
+size = Vector3(4.1007853, 0.09802246, 3.8414063)
+material = ExtResource("12_pm3ni")
+
+[node name="Wall206" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 13.08043, -2.228778, -12.880639)
+use_collision = true
+size = Vector3(6.5676923, 1.0181885, 3.8414063)
+material = ExtResource("19_og1vs")
 
 [node name="Wall77" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 0, -7.071562, 14.506999, -12.701722)
@@ -1454,12 +2674,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -11.
 use_collision = true
 size = Vector3(9.542025, 1, 3.05)
 material = ExtResource("5_85g3d")
-
-[node name="Wall92" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, -11.355306, 0.7342291, -11.29431)
-use_collision = true
-size = Vector3(9.542025, 1, 3.05)
-material = ExtResource("4_o6xl0")
 
 [node name="Wall78" type="CSGBox3D" parent="RoomCore/Level7/Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -1, 0, 1, -4.371138e-08, 0.6761675, 14.506999, -11.294311)
@@ -1554,21 +2768,21 @@ material = ExtResource("5_85g3d")
 [node name="Roof" type="Node3D" parent="RoomCore/Level7"]
 
 [node name="Wall16" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, -3.4544678)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, -2.9498901)
 use_collision = true
-size = Vector3(32, 1, 19.908936)
+size = Vector3(32, 1, 18.89978)
 material = ExtResource("4_tbgi4")
 
 [node name="Wall22" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1979218, -11.5, -14.718584)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6753769, -11.500002, -14.124805)
 use_collision = true
-size = Vector3(29.604156, 1, 2.769226)
+size = Vector3(28.649246, 1, 3.731491)
 material = ExtResource("4_tbgi4")
 
 [node name="Wall24" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6722088, -10.5, -14.166189)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6722088, -10.500002, -14.116911)
 use_collision = true
-size = Vector3(28.655739, 1, 3.8748474)
+size = Vector3(28.655739, 1, 3.776291)
 material = ExtResource("6_tipki")
 
 [node name="Wall38" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
@@ -1595,22 +2809,502 @@ use_collision = true
 size = Vector3(19.5, 1, 7.021)
 material = ExtResource("6_tipki")
 
-[node name="Wall23" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 12.5, -1.4818116)
+[node name="Wall51" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4659882, -5.660015, -0.07130623)
 use_collision = true
-size = Vector3(2.5, 1, 29.963623)
+size = Vector3(13.92749, 1, 32.028107)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall52" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.058432, -5.660015, -5.2917767)
+use_collision = true
+size = Vector3(9.122437, 1, 21.587166)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall53" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.286985, -5.660015, -3.5060692)
+use_collision = true
+size = Vector3(3.4438324, 1, 18.01575)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall54" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.602289, -5.660015, 9.133354)
+use_collision = true
+size = Vector3(8.813225, 1, 7.5647287)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall55" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2733765, -5.660015, 10.875122)
+use_collision = true
+size = Vector3(4.137081, 1, 4.0811925)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall73" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.273, -4.66, 10.875)
+use_collision = true
+size = Vector3(4.137081, 1, 4.0811925)
+material = ExtResource("6_tipki")
+
+[node name="Wall56" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.91269, -5.660015, 14.376551)
+use_collision = true
+size = Vector3(9.415709, 1, 3.1157916)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall57" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.475597, -5.660015, 12.630666)
+use_collision = true
+size = Vector3(2.1922293, 1, 6.607561)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall58" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.212105, -5.660015, -4.3102717)
+use_collision = true
+size = Vector3(5.665245, 1, 23.356096)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall91" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.250547, 0.15992546, -9.911633)
+use_collision = true
+size = Vector3(3.5883598, 1, 7.546299)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall94" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4248247, 0.15992546, -4.8141036)
+use_collision = true
+size = Vector3(16.166378, 1, 22.497791)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall103" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6011457, 0.15992546, -12.725445)
+use_collision = true
+size = Vector3(2.4690533, 1, 6.675107)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall104" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.248842, 0.15992546, -14.91302)
+use_collision = true
+size = Vector3(5.019561, 1, 2.2999558)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall105" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.116737, 0.15992546, -11.787992)
+use_collision = true
+size = Vector3(2.950779, 1, 4.3594503)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall121" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.67856, 1.1599998, -11.282639)
+use_collision = true
+size = Vector3(2.0739002, 1, 3.5498235)
+material = ExtResource("6_tipki")
+
+[node name="Wall110" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.113086, 0.15992546, -15.212589)
+use_collision = true
+size = Vector3(0.9745349, 1, 2.8848033)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall119" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.693853, 0.15992546, -12.915662)
+use_collision = true
+size = Vector3(0.9745349, 1, 2.6401556)
+material = ExtResource("4_tbgi4")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.523825, 4.593916, -12.362126)
+use_collision = true
+polygon = PackedVector2Array(-0.027991295, 0.5630226, 0, 1, 1, 1, 1.012517, -0.041807175)
+material = ExtResource("4_tbgi4")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.44962, 4.593916, -12.362126)
+use_collision = true
+polygon = PackedVector2Array(-0.027991295, 0.5630226, 0, 1, 1, 1, 1.012517, -0.041807175)
+material = ExtResource("4_tbgi4")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.090904, 4.593916, -12.362126)
+use_collision = true
+polygon = PackedVector2Array(-0.027991295, 0.5630226, 0, 1, 1, 1, 1.012517, -0.041807175)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall120" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.694, 1.16, -12.916)
+use_collision = true
+size = Vector3(0.9745349, 1, 2.6401556)
+material = ExtResource("6_tipki")
+
+[node name="Wall95" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.234907, 0.15992546, 1.6299229)
+use_collision = true
+size = Vector3(3.6436, 1, 9.609738)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall96" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.617243, 0.15992546, 9.53867)
+use_collision = true
+size = Vector3(2.878929, 1, 6.4113145)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall97" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32981348, 0.15992546, 13.075588)
+use_collision = true
+size = Vector3(25.980534, 1, 5.8494716)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall98" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1814122, 0.15992546, 8.230314)
+use_collision = true
+size = Vector3(13.598305, 1, 4.2964745)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall99" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.833045, 0.15992546, 7.9304094)
+use_collision = true
+size = Vector3(5.6380196, 1, 4.896284)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall102" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.328203, 0.15992546, 9.6311035)
+use_collision = true
+size = Vector3(3.6531162, 1, 1.494895)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall100" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.367292, 0.15992546, 9.225382)
+use_collision = true
+size = Vector3(3.6634111, 1, 7.486228)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall101" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.860111, 0.15992546, -2.0566294)
+use_collision = true
+size = Vector3(12.677774, 1, 15.226294)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall106" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.250547, 1.16, -9.911633)
+use_collision = true
+size = Vector3(3.5883598, 1, 7.546299)
+material = ExtResource("6_tipki")
+
+[node name="Wall107" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4248247, 1.16, -4.8141036)
+use_collision = true
+size = Vector3(16.166378, 1, 22.497791)
+material = ExtResource("6_tipki")
+
+[node name="Wall108" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6011457, 1.16, -12.725445)
+use_collision = true
+size = Vector3(2.4690533, 1, 6.675107)
+material = ExtResource("6_tipki")
+
+[node name="Wall109" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.248842, 1.16, -14.91302)
+use_collision = true
+size = Vector3(5.019561, 1, 2.2999558)
+material = ExtResource("6_tipki")
+
+[node name="Wall111" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.234907, 1.16, 1.6299229)
+use_collision = true
+size = Vector3(3.6436, 1, 9.609738)
+material = ExtResource("6_tipki")
+
+[node name="Wall112" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.617243, 1.16, 9.53867)
+use_collision = true
+size = Vector3(2.878929, 1, 6.4113145)
+material = ExtResource("6_tipki")
+
+[node name="Wall113" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32981348, 1.16, 13.075588)
+use_collision = true
+size = Vector3(25.980534, 1, 5.8494716)
+material = ExtResource("6_tipki")
+
+[node name="Wall114" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1814122, 1.16, 8.230314)
+use_collision = true
+size = Vector3(13.598305, 1, 4.2964745)
+material = ExtResource("6_tipki")
+
+[node name="Wall115" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.833045, 1.16, 7.9304094)
+use_collision = true
+size = Vector3(5.6380196, 1, 4.896284)
+material = ExtResource("6_tipki")
+
+[node name="Wall116" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.328203, 1.16, 9.6311035)
+use_collision = true
+size = Vector3(3.6531162, 1, 1.494895)
+material = ExtResource("6_tipki")
+
+[node name="Wall117" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.367292, 1.16, 9.225382)
+use_collision = true
+size = Vector3(3.6634111, 1, 7.486228)
+material = ExtResource("6_tipki")
+
+[node name="Wall118" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.860111, 1.1599998, -1.9957507)
+use_collision = true
+size = Vector3(12.677774, 1, 15.104536)
+material = ExtResource("6_tipki")
+
+[node name="Wall66" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4659882, -4.66, -0.07130623)
+use_collision = true
+size = Vector3(13.92749, 1, 32.028107)
+material = ExtResource("6_tipki")
+
+[node name="Wall67" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.058432, -4.66, -5.2917767)
+use_collision = true
+size = Vector3(9.122437, 1, 21.587166)
+material = ExtResource("6_tipki")
+
+[node name="Wall68" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.286985, -4.66, -3.5060692)
+use_collision = true
+size = Vector3(3.4438324, 1, 18.01575)
+material = ExtResource("6_tipki")
+
+[node name="Wall69" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.602289, -4.66, 9.133354)
+use_collision = true
+size = Vector3(8.813225, 1, 7.5647287)
+material = ExtResource("6_tipki")
+
+[node name="Wall70" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.91269, -4.66, 14.376551)
+use_collision = true
+size = Vector3(9.415709, 1, 3.1157916)
+material = ExtResource("6_tipki")
+
+[node name="Wall71" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.475597, -4.66, 12.630666)
+use_collision = true
+size = Vector3(2.1922293, 1, 6.607561)
+material = ExtResource("6_tipki")
+
+[node name="Wall72" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.212105, -4.66, -4.3102717)
+use_collision = true
+size = Vector3(5.665245, 1, 23.356096)
+material = ExtResource("6_tipki")
+
+[node name="Wall59" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.216912, -5.660015, 9.894789)
+use_collision = true
+size = Vector3(3.65563, 1, 5.2815595)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall65" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.217, -4.66, 9.895)
+use_collision = true
+size = Vector3(3.65563, 1, 5.2815595)
+material = ExtResource("6_tipki")
+
+[node name="Wall23" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 12.5, -1.75412)
+use_collision = true
+size = Vector3(2.5, 1, 28.507507)
+material = ExtResource("6_tipki")
+
+[node name="Wall29" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 6.6586647, 4.2579155)
+use_collision = true
+size = Vector3(2.5, 1, 16.573875)
+material = ExtResource("6_tipki")
+
+[node name="Wall83" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.658142, 5.6589985, 4.459086)
+use_collision = true
+size = Vector3(2.6837158, 1, 16.171703)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall30" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.611599, 6.6586637, -10.018054)
+use_collision = true
+size = Vector3(22.776802, 1, 8.230785)
+material = ExtResource("6_tipki")
+
+[node name="Wall79" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.612, 5.6589994, -10.096565)
+use_collision = true
+size = Vector3(22.776802, 1, 7.4727373)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall74" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08198929, 6.6586647, -15.21841)
+use_collision = true
+size = Vector3(27.18348, 1, 2.6515255)
+material = ExtResource("6_tipki")
+
+[node name="Wall78" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3578299, 5.6590014, -15.152301)
+use_collision = true
+size = Vector3(29.248543, 1, 2.782916)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall92" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.82698, 6.175825, -15.255989)
+use_collision = true
+size = Vector3(2.3102436, 0.110839844, 2.57554)
+material = ExtResource("4_o6xl0")
+
+[node name="Wall93" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.82698, 7.094515, -15.255989)
+use_collision = true
+size = Vector3(2.3102436, 0.110839844, 2.57554)
+material = ExtResource("22_y6deb")
+
+[node name="Wall75" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.858123, 6.6586637, -9.932647)
+use_collision = true
+size = Vector3(6.248659, 1, 8.067096)
+material = ExtResource("6_tipki")
+
+[node name="Wall81" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.152174, 5.6589994, -10.185608)
+use_collision = true
+size = Vector3(5.6603093, 1, 7.561868)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall76" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.255701, 6.6586637, -8.208104)
+use_collision = true
+size = Vector3(3.069642, 1, 4.6180205)
+material = ExtResource("6_tipki")
+
+[node name="Wall80" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.545657, 5.6589994, -8.219186)
+use_collision = true
+size = Vector3(3.6489568, 1, 3.668055)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall77" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.255701, 6.6586637, -13.480957)
+use_collision = true
+size = Vector3(3.069642, 1, 1.0052993)
+material = ExtResource("6_tipki")
+
+[node name="Wall31" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2472191, 6.6586647, -0.16673766)
+use_collision = true
+size = Vector3(29.470467, 1, 11.594012)
+material = ExtResource("6_tipki")
+
+[node name="Wall82" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.247, 5.6590004, -0.41424915)
+use_collision = true
+size = Vector3(29.470467, 1, 12.0885105)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall32" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9255733, 6.6586657, 6.0072594)
+use_collision = true
+size = Vector3(17.124882, 1, 0.8814788)
+material = ExtResource("6_tipki")
+
+[node name="Wall85" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.420258, 5.6590014, 6.007)
+use_collision = true
+size = Vector3(4.13646, 1, 0.8814788)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall33" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9368334, 6.6586657, 11.213208)
+use_collision = true
+size = Vector3(13.147402, 1, 9.68596)
+material = ExtResource("6_tipki")
+
+[node name="Wall84" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.937, 5.6589994, 10.807099)
+use_collision = true
+size = Vector3(13.147402, 1, 10.497765)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall62" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.044908, 6.6586657, 12.468932)
+use_collision = true
+size = Vector3(8.976533, 1, 7.174523)
+material = ExtResource("6_tipki")
+
+[node name="Wall88" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.045, 5.659, 12.469)
+use_collision = true
+size = Vector3(8.976533, 1, 7.174523)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall63" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.272523, 6.6586657, 10.952596)
+use_collision = true
+size = Vector3(3.7364354, 1, 4.141836)
+material = ExtResource("6_tipki")
+
+[node name="Wall89" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.273, 5.659, 10.953)
+use_collision = true
+size = Vector3(3.7364354, 1, 4.141836)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall64" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.666593, 6.6586657, 7.245684)
+use_collision = true
+size = Vector3(8.948296, 1, 3.370298)
+material = ExtResource("6_tipki")
+
+[node name="Wall90" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.667, 5.659, 7.246)
+use_collision = true
+size = Vector3(8.948296, 1, 3.370298)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall60" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.947086, 6.6586657, 13.077818)
+use_collision = true
+size = Vector3(3.1733103, 1, 5.9567494)
+material = ExtResource("6_tipki")
+
+[node name="Wall87" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.947, 5.659, 13.078)
+use_collision = true
+size = Vector3(3.1733103, 1, 5.9567494)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall61" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.998428, 6.6586657, 11.315198)
+use_collision = true
+size = Vector3(0.9919286, 1, 2.4314997)
+material = ExtResource("6_tipki")
+
+[node name="Wall86" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.998, 5.659, 11.315)
+use_collision = true
+size = Vector3(0.9919286, 1, 2.4314997)
+material = ExtResource("4_tbgi4")
+
+[node name="Wall28" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.976257, 12.5, 10.734833)
+use_collision = true
+size = Vector3(1.1878662, 1, 3.529602)
 material = ExtResource("6_tipki")
 
 [node name="Wall27" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.368164, 11.5, -1.7643491)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.368164, 11.5, -1.5432192)
 use_collision = true
-size = Vector3(3.2636719, 1, 29.398926)
+size = Vector3(3.2636719, 1, 28.956665)
 material = ExtResource("4_tbgi4")
 
 [node name="Wall25" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.86, 12.5, 12.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.3590236, 12.5, 12.5)
 use_collision = true
-size = Vector3(6.9917603, 1, 17.25)
+size = Vector3(6.9917603, 1, 16.248047)
 material = ExtResource("6_tipki")
 
 [node name="Wall26" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
@@ -1697,6 +3391,12 @@ use_collision = true
 size = Vector3(8.77002, 1, 7)
 material = ExtResource("6_tipki")
 
+[node name="Wall50" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.61499, -5.595936, 9.338853)
+use_collision = true
+size = Vector3(8.77002, 1, 7)
+material = ExtResource("6_tipki")
+
 [node name="Wall42" type="CSGBox3D" parent="RoomCore/Level7/Roof"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.435537, -10.499999, 10.735884)
 use_collision = true
@@ -1720,16 +3420,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.375, -11.5, 12)
 use_collision = true
 size = Vector3(1.75, 1, 8)
 material = ExtResource("4_tbgi4")
-
-[node name="Exit Sign" type="Label3D" parent="RoomCore/Level7"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0.9997666, 0.021605436, -4.3701185e-08, 0.021605436, -0.9997666, -9.444036e-10, 12.591715, -5.3913803, -14.498815)
-text = "EXIT HERE"
-font_size = 256
-
-[node name="Exit Sign2" type="Label3D" parent="RoomCore/Level7"]
-transform = Transform3D(0.02134971, -0.9879335, -0.15339978, 0.9997666, 0.021605436, -4.3701185e-08, 0.0033143123, -0.15336397, 0.9881642, 14.245681, -5.3913803, -12.300277)
-text = "EXIT HERE"
-font_size = 256
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 0)
